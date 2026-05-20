@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: retail_db
+    schema: raw
+    loader: snowflake
+
+    tables:
+
+      - name: raw_sales
+        description: "This table contains raw sales data from the retail system."
+
+      - name: raw_cancellations
+        description: "This table contains raw cancellation data from the retail system." 
+        
+      - name: raw_customers
+        description: "This table contains raw customer data from the retail system."

@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Staging model for cleaned customer records."
+    columns:
+      - name: customer_id
+        description: "Normalized customer identifier."
+        tests:
+          - not_null
+          - unique
+      - name: country
+        description: "Customer country, trimmed and cleaned."
+        tests:
+          - not_null
+
+  - name: stg_sales
+    description: "Staging model for cleaned sales transactions."
+    columns:
+      - name: invoice_no
+        description: "Invoice number for the sales transaction."
+        tests:
+          - not_null
+      - name: stock_code
+        description: "Product stock keeping unit code."
+      - name: product_description
+        description: "Trimmed sales product description."
+      - name: quantity
+        description: "Quantity sold, filtered to positive values."
+        tests:
+          - not_null
+      - name: invoice_date
+        description: "Timestamp of the sales invoice."
+      - name: unit_price
+        description: "Unit price for the sold item."
+      - name: customer_id
+        description: "Customer identifier linked to the customer staging model."
+        tests:
+          - not_null
+      - name: country
+        description: "Customer country for the sale."
+      - name: revenue
+        description: "Calculated revenue for the sale (quantity * unit_price)."
+        tests:
+          - not_null
+      - name: channel
+        description: "Sales channel, currently hard-coded to online_store."
+        tests:
+          - accepted_values:
+              values: [online_store]
+
+  - name: stg_cancellations
+    description: "Staging model for cleaned cancellation transactions."
+    columns:
+      - name: invoice_no
+        description: "Invoice number for the cancellation."
+        tests:
+          - not_null
+      - name: stock_code
+        description: "Product stock keeping unit code for the cancelled item."
+      - name: product_description
+        description: "Trimmed description of the cancelled product."
+      - name: quantity_cancelled
+        description: "Absolute cancelled quantity."
+        tests:
+          - not_null
+      - name: cancelled_at
+        description: "Timestamp when the cancellation was recorded."
+      - name: unit_price
+        description: "Unit price of the cancelled item."
+      - name: customer_id
+        description: "Customer identifier for the cancellation."
+      - name: country
+        description: "Country for the cancelled transaction."
+      - name: revenue_lost
+        description: "Calculated lost revenue for the cancellation."
+        tests:
+          - not_null
