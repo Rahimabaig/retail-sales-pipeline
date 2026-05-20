@@ -54,7 +54,8 @@ Source (UCI Online Retail Dataset)
 │  mart_top_products              │
 └─────────────────────────────────┘
 ```
-
+---
+![Lineage Graph](assets/lineage_graph.png)
 ---
 
 ## Tech Stack
