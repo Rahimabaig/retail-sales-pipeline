@@ -55,7 +55,7 @@ Source (UCI Online Retail Dataset)
 └─────────────────────────────────┘
 ```
 ---
-![Lineage Graph](assets/lineage_graph.png)
+![Lineage Graph](assets/lineage_graph.jpg)
 ---
 
 ## Tech Stack
